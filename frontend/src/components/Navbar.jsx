@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
-import { ShoppingBag, Menu, X, Sparkles, MapPin, Phone } from 'lucide-react';
+import { ShoppingBag, Menu, X, Sparkles, MapPin, Phone, Instagram } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ onOpenQuoteModal }) {
@@ -80,8 +80,20 @@ export default function Navbar({ onOpenQuoteModal }) {
             </a>
           </nav>
 
-          {/* Acciones: Carrito y Menú Móvil */}
-          <div className="flex items-center gap-3">
+          {/* Acciones: Instagram, Carrito y Menú Móvil */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Instagram Oficial */}
+            <a
+              href="https://www.instagram.com/dulcesabor.cp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram Oficial @dulcesabor.cp"
+              title="Instagram Oficial @dulcesabor.cp"
+              className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-[#FFFDF9] border border-[#E5D6BE] text-[#B45309] hover:bg-[#FDF6E2] hover:text-[#78350F] transition-all shadow-xs cursor-pointer"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+
             {/* Botón de Carrito de Compras */}
             <button
               onClick={openCart}
@@ -164,13 +176,22 @@ export default function Navbar({ onOpenQuoteModal }) {
                 </a>
                 <div className="pt-2 border-t border-[#E5D6BE] flex flex-col gap-2">
                   <a
-                    href="https://wa.me/50767459921?text=Hola%20Dulce%20Sabor,%20deseo%20hacer%20una%20consulta"
+                    href="https://wa.me/50761672499?text=Hola,%20Dulce%20Sabor.%20Me%20gustar%C3%ADa%20realizar%20una%20consulta%20sobre%20sus%20productos."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 py-2.5 bg-[#16A34A] text-white font-semibold text-sm rounded-lg shadow-xs"
                   >
                     <Phone className="w-4 h-4" />
-                    <span>WhatsApp Chiriquí (+507 6745-9921)</span>
+                    <span>WhatsApp Chiriquí (+507 6167-2499)</span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/dulcesabor.cp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-semibold text-sm rounded-lg shadow-xs hover:opacity-95 transition-opacity"
+                  >
+                    <Instagram className="w-4 h-4" />
+                    <span>Instagram (@dulcesabor.cp)</span>
                   </a>
                 </div>
               </nav>

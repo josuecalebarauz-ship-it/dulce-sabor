@@ -93,9 +93,9 @@ dulce-sabor/
 - **Pedidos por Encargo:** Los postres se cocinan frescos bajo demanda (requieren 24h de anticipación).
 - **Logística en Chiriquí:** Cobertura para **Volcán**, **Cerro Punta & Guadalupe**, **Bambito**, **Paso Ancho** y opción de **Retiro en Taller**.
 - **Formas de Pago Panameñas:**
-  - **Yappy:** Billetera móvil más utilizada en Panamá (@dulcesaborpanama / 6745-9921).
+  - **Yappy:** Billetera móvil más utilizada en Panamá (@dulcesaborpanama / 6167-2499).
   - **ACH:** Transferencia bancaria directa (Banco General).
-  - **Pago Contra Entrega:** En efectivo al momento de recibir o retirar.
+  - **Pago Contra Entrega:** Con anticipo obligatorio del 50% vía Yappy o ACH, y saldo restante al momento de recibir o retirar.
 - **Eventos:** Formulario interactivo para cotizar mesas de dulces para bodas, cumpleaños y banquetes familiares.
 
 ---

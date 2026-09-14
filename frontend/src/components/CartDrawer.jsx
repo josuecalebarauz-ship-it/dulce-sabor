@@ -115,9 +115,9 @@ export default function CartDrawer() {
                         </span>
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-extrabold text-[#B45309]">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            B/. {(item.price * item.quantity).toFixed(2)}
                             <span className="text-[10px] text-[#674029] font-normal ml-1">
-                              (${item.price.toFixed(2)} c/u)
+                              (B/. {item.price.toFixed(2)} c/u)
                             </span>
                           </span>
 
@@ -163,7 +163,7 @@ export default function CartDrawer() {
                   <div className="space-y-2 mb-4 text-sm">
                     <div className="flex justify-between text-[#674029]">
                       <span>Subtotal de postres:</span>
-                      <span className="font-bold text-[#2C1810]">${cartSubtotal.toFixed(2)}</span>
+                      <span className="font-bold text-[#2C1810]">B/. {cartSubtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-[#78350F] text-xs">
                       <span>Flete estimado (Tierras Altas):</span>
@@ -172,7 +172,7 @@ export default function CartDrawer() {
                     <div className="border-t border-[#E5D6BE] pt-2 flex justify-between items-baseline">
                       <span className="font-bold text-base text-[#2C1810]">Total estimado:</span>
                       <span className="text-2xl font-extrabold text-[#78350F]">
-                        ${cartSubtotal.toFixed(2)}
+                        B/. {cartSubtotal.toFixed(2)}
                       </span>
                     </div>
                   </div>

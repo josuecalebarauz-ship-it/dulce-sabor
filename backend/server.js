@@ -276,8 +276,8 @@ function getPaymentInstructions(method, total, customerPhone) {
       return {
         type: 'Yappy Comercial',
         directoryName: '@dulcesaborpanama',
-        phone: '6745-9921',
-        instructions: `Envía \$${total.toFixed(2)} por Yappy al directorio @dulcesaborpanama o al número 6745-9921 con la referencia de tu pedido.`
+        phone: '6167-2499',
+        instructions: `Envía B/.${total.toFixed(2)} por Yappy al directorio @dulcesaborpanama o al número 6167-2499 con la referencia de tu pedido.`
       };
     case 'ach':
       return {
@@ -286,14 +286,20 @@ function getPaymentInstructions(method, total, customerPhone) {
         accountType: 'Cuenta Corriente',
         accountNumber: '03-95-01-123456-7',
         beneficiary: 'Dulce Sabor Artesanal S.A.',
-        instructions: `Transfiere \$${total.toFixed(2)} e incluye tu número de orden en el detalle de la transferencia.`
+        instructions: `Transfiere B/.${total.toFixed(2)} e incluye tu número de orden en el detalle de la transferencia.`
       };
     case 'cash':
-    default:
+    default: {
+      const advance = Number((total * 0.5).toFixed(2));
+      const balance = Number((total - advance).toFixed(2));
       return {
-        type: 'Pago Contra Entrega (Efectivo)',
-        instructions: `Pagarás \$${total.toFixed(2)} en efectivo al momento de recibir tus postres frescos o retirarlos en nuestro taller.`
+        type: 'Pago Contra Entrega (Anticipo 50% Requerido)',
+        advanceRequired: advance,
+        remainingBalance: balance,
+        advanceConfirmed: true,
+        instructions: `Para confirmar pedidos contra entrega se requiere un anticipo del 50% del total. El 50% restante se paga al recibir. Anticipo pagado vía Yappy/ACH al 6167-2499: B/.${advance.toFixed(2)}. Saldo pendiente a pagar en efectivo al recibir: B/.${balance.toFixed(2)}.`
       };
+    }
   }
 }
 

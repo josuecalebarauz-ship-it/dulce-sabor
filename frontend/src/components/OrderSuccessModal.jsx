@@ -9,7 +9,7 @@ export default function OrderSuccessModal() {
 
   useEffect(() => {
     if (completedOrder) {
-      // Disparar confeti artesanal festivo
+      // Disparar confeti festivo
       confetti({
         particleCount: 100,
         spread: 70,
@@ -23,11 +23,15 @@ export default function OrderSuccessModal() {
 
   const order = completedOrder;
 
-  // Enlace para enviar confirmación por WhatsApp al negocio
+  const advanceText = order.payment.method === 'cash'
+    ? `\n- Anticipo (50% pagado): B/.${(order.total * 0.5).toFixed(2)}\n- Saldo al recibir (50%): B/.${(order.total * 0.5).toFixed(2)}`
+    : '';
+
+  // Mensaje automático oficial para WhatsApp
   const whatsappMessage = encodeURIComponent(
-    `¡Hola Dulce Sabor! Acabo de realizar el pedido ${order.orderId} a nombre de ${order.customer.name} por un total de $${order.total.toFixed(2)} para entrega en ${order.delivery.zoneName} el día ${order.delivery.date}. Método de pago: ${order.payment.method.toUpperCase()}.`
+    `Hola, Dulce Sabor. Acabo de realizar un pedido desde la página web. Quisiera confirmar los detalles de mi pedido:\n- Pedido: ${order.orderId}\n- Cliente: ${order.customer.name}\n- Total: B/.${order.total.toFixed(2)}${advanceText}\n- Método de Pago: ${order.payment.method.toUpperCase()}\n- Zona de Entrega: ${order.delivery.zoneName}\n- Fecha de Entrega: ${order.delivery.date} (${order.delivery.timeSlot})`
   );
-  const whatsappUrl = `https://wa.me/50767459921?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/50761672499?text=${whatsappMessage}`;
 
   return (
     <AnimatePresence>
@@ -121,41 +125,41 @@ export default function OrderSuccessModal() {
                     <div>
                       <span className="font-bold text-[#2C1810] text-sm">{it.name}</span>
                       <span className="text-[#78350F] block text-[11px]">
-                        Cantidad: {it.quantity} x ${it.unitPrice ? it.unitPrice.toFixed(2) : it.price.toFixed(2)}
+                        Cantidad: {it.quantity} x B/.{it.unitPrice ? it.unitPrice.toFixed(2) : it.price.toFixed(2)}
                       </span>
                     </div>
                     <span className="font-extrabold text-[#4A2B1B] text-sm">
-                      ${((it.unitPrice || it.price) * it.quantity).toFixed(2)}
+                      B/.{((it.unitPrice || it.price) * it.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
                 <div className="p-3 bg-[#FDF6E2] flex items-center justify-between font-bold text-sm">
                   <span>Total con flete incluido:</span>
                   <span className="text-base text-[#B45309] font-extrabold">
-                    ${order.total.toFixed(2)}
+                    B/.{order.total.toFixed(2)}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Guía de Pago Simulado */}
+            {/* Guía de Pago */}
             <div className="p-4 rounded-2xl bg-[#F0F9FF] border border-[#BAE6FD]">
               <span className="font-bold text-[#0369A1] uppercase tracking-wider text-[10px] block mb-1">
-                Instrucciones de Pago ({order.payment.method.toUpperCase()}):
+                Estado de Pago ({order.payment.method.toUpperCase()}):
               </span>
               {order.payment.method === 'yappy' && (
                 <p className="text-[#0C4A6E]">
-                  Envía <strong>${order.total.toFixed(2)}</strong> a <strong>@dulcesaborpanama</strong> o al <strong>6745-9921</strong> usando como descripción tu orden <strong>{order.orderId}</strong>.
+                  Has confirmado el pago de <strong>B/.{order.total.toFixed(2)}</strong> a <strong>@dulcesaborpanama</strong> (<strong>6167-2499</strong>).
                 </p>
               )}
               {order.payment.method === 'ach' && (
                 <p className="text-[#0C4A6E]">
-                  Banco General • Cta Corriente: <strong>03-95-01-123456-7</strong> a nombre de Dulce Sabor Artesanal S.A.
+                  Has confirmado la transferencia ACH de <strong>B/.{order.total.toFixed(2)}</strong> a Banco General (Cta: 03-95-01-123456-7).
                 </p>
               )}
               {order.payment.method === 'cash' && (
                 <p className="text-[#0C4A6E]">
-                  Ten listo el monto exacto de <strong>${order.total.toFixed(2)}</strong> en efectivo al momento de recibir o retirar tu pedido.
+                  Has confirmado el pago del <strong>anticipo del 50% (B/.{(order.total * 0.5).toFixed(2)})</strong>. El saldo restante de <strong>B/.{(order.total * 0.5).toFixed(2)}</strong> lo pagarás en efectivo al momento de la entrega.
                 </p>
               )}
             </div>
@@ -170,7 +174,7 @@ export default function OrderSuccessModal() {
               className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#16A34A] hover:bg-[#15803D] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all"
             >
               <MessageSquare className="w-4 h-4" />
-              <span>Enviar comprobante por WhatsApp</span>
+              <span>Confirmar pedido por WhatsApp (6167-2499)</span>
             </a>
 
             <button

@@ -9,7 +9,7 @@ export default function Hero({ products = [] }) {
     id: 'bienmesabe',
     name: 'Bienmesabe Chiricano',
     tagline: 'El rey dulce de Tierras Altas con raspadura y leche fresca',
-    price: 4.50,
+    price: 2.25,
     portion: 'Frasco artesanal (8 oz)',
     accentColor: '#854d0e'
   });
@@ -119,7 +119,7 @@ export default function Hero({ products = [] }) {
                   className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#B45309] hover:bg-[#78350F] active:scale-95 text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer ml-auto"
                 >
                   <ShoppingBag className="w-3.5 h-3.5" />
-                  <span>Pedir este postre (${currentProduct.price ? currentProduct.price.toFixed(2) : '4.50'})</span>
+                  <span>Pedir este postre (${currentProduct.price ? currentProduct.price.toFixed(2) : '2.25'})</span>
                 </button>
               </div>
             </div>

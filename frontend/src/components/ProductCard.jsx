@@ -115,7 +115,7 @@ export default function ProductCard({ product }) {
         <div>
           <span className="text-xs text-[#78350F] block font-medium">Precio</span>
           <span className="text-2xl font-extrabold text-[#2C1810]">
-            ${product.price.toFixed(2)}
+            B/. {product.price.toFixed(2)}
           </span>
         </div>
 

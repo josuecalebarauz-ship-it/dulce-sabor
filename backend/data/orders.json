@@ -1,5 +1,47 @@
 [
   {
+    "orderId": "DS-2026-5495",
+    "createdAt": "2026-09-14T17:45:22.214Z",
+    "status": "Confirmado - En Cola de Preparación",
+    "customer": {
+      "name": "Josué Araúz",
+      "phone": "61672499",
+      "email": "",
+      "address": "Retiro en Taller de Volcán"
+    },
+    "delivery": {
+      "zoneId": "pickup",
+      "zoneName": "Retiro en Taller Dulce Sabor (Volcán Centro)",
+      "cost": 0,
+      "date": "2026-09-15",
+      "timeSlot": "Mañana (9:00 AM - 1:00 PM)",
+      "estimatedNotice": "Listo en 24h tras confirmación del pedido"
+    },
+    "payment": {
+      "method": "yappy",
+      "details": {
+        "type": "Yappy Comercial",
+        "directoryName": "@dulcesaborpanama",
+        "phone": "6167-2499",
+        "instructions": "Envía B/.2.00 por Yappy al directorio @dulcesaborpanama o al número 6167-2499 con la referencia de tu pedido."
+      },
+      "isPaid": false
+    },
+    "items": [
+      {
+        "id": "dulce-banana",
+        "name": "Dulce de Banana Casero",
+        "unitPrice": 2,
+        "quantity": 1,
+        "totalItem": 2
+      }
+    ],
+    "subtotal": 2,
+    "deliveryCost": 0,
+    "total": 2,
+    "specialInstructions": ""
+  },
+  {
     "orderId": "DS-2026-6203",
     "createdAt": "2026-09-14T03:13:19.470Z",
     "status": "Confirmado - En Cola de Preparación",
@@ -62,8 +104,8 @@
       "details": {
         "type": "Yappy Comercial",
         "directoryName": "@dulcesaborpanama",
-        "phone": "6745-9921",
-        "instructions": "Envía $16.25 por Yappy al directorio @dulcesaborpanama o al número 6745-9921 con la referencia de tu pedido."
+        "phone": "6167-2499",
+        "instructions": "Envía B/.16.25 por Yappy al directorio @dulcesaborpanama o al número 6167-2499 con la referencia de tu pedido."
       },
       "isPaid": false
     },
