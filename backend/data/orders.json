@@ -1,0 +1,91 @@
+[
+  {
+    "orderId": "DS-2026-6203",
+    "createdAt": "2026-09-14T03:13:19.470Z",
+    "status": "Confirmado - En Cola de Preparación",
+    "customer": {
+      "name": "Josué Araúz",
+      "phone": "61672499",
+      "email": "",
+      "address": "Retiro en Taller de Volcán"
+    },
+    "delivery": {
+      "zoneId": "pickup",
+      "zoneName": "Retiro en Taller Dulce Sabor (Volcán Centro)",
+      "cost": 0,
+      "date": "2026-09-15",
+      "timeSlot": "Mañana (9:00 AM - 1:00 PM)",
+      "estimatedNotice": "Listo en 24h tras confirmación del pedido"
+    },
+    "payment": {
+      "method": "cash",
+      "details": {
+        "type": "Pago Contra Entrega (Efectivo)",
+        "instructions": "Pagarás $22.50 en efectivo al momento de recibir tus postres frescos o retirarlos en nuestro taller."
+      },
+      "isPaid": false
+    },
+    "items": [
+      {
+        "id": "bienmesabe",
+        "name": "Bienmesabe Chiricano",
+        "unitPrice": 4.5,
+        "quantity": 5,
+        "totalItem": 22.5
+      }
+    ],
+    "subtotal": 22.5,
+    "deliveryCost": 0,
+    "total": 22.5,
+    "specialInstructions": ""
+  },
+  {
+    "orderId": "DS-2026-1325",
+    "createdAt": "2026-09-14T02:35:01.840Z",
+    "status": "Confirmado - En Cola de Preparación",
+    "customer": {
+      "name": "Juan Perez",
+      "phone": "6789-1122",
+      "email": "juan@example.com",
+      "address": "Calle principal Cerro Punta"
+    },
+    "delivery": {
+      "zoneId": "cerro-punta",
+      "zoneName": "Cerro Punta & Guadalupe",
+      "cost": 3.5,
+      "date": "2026-09-15",
+      "timeSlot": "Mañana (9:00 AM - 1:00 PM)",
+      "estimatedNotice": "Entrega en franja horaria programada"
+    },
+    "payment": {
+      "method": "yappy",
+      "details": {
+        "type": "Yappy Comercial",
+        "directoryName": "@dulcesaborpanama",
+        "phone": "6745-9921",
+        "instructions": "Envía $16.25 por Yappy al directorio @dulcesaborpanama o al número 6745-9921 con la referencia de tu pedido."
+      },
+      "isPaid": false
+    },
+    "items": [
+      {
+        "id": "bienmesabe",
+        "name": "Bienmesabe Chiricano",
+        "unitPrice": 4.5,
+        "quantity": 2,
+        "totalItem": 9
+      },
+      {
+        "id": "arroz-con-leche",
+        "name": "Arroz con Leche Cremoso",
+        "unitPrice": 3.75,
+        "quantity": 1,
+        "totalItem": 3.75
+      }
+    ],
+    "subtotal": 12.75,
+    "deliveryCost": 3.5,
+    "total": 16.25,
+    "specialInstructions": ""
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "quoteId": "COT-877258",
+    "createdAt": "2026-09-14T04:07:57.258Z",
+    "name": "Josué Araúz",
+    "phone": "61672499",
+    "email": "",
+    "eventType": "Reunión Corporativa",
+    "eventDate": "2026-09-23",
+    "guestsCount": "20 a 50 personas",
+    "requestedDesserts": [
+      "bienmesabe",
+      "arroz-con-leche",
+      "dulce-banana"
+    ],
+    "notes": "porciones mini",
+    "status": "Pendiente de Respuesta"
+  },
+  {
+    "quoteId": "COT-311649",
+    "createdAt": "2026-09-14T02:35:11.649Z",
+    "name": "Maria Delgado",
+    "phone": "6543-2109",
+    "email": "maria@example.com",
+    "eventType": "Boda / Quinceaños",
+    "eventDate": "2026-10-20",
+    "guestsCount": "60 a 100 personas",
+    "requestedDesserts": [
+      "bienmesabe",
+      "arroz-con-leche",
+      "gelatina-mosaico"
+    ],
+    "notes": "Queremos mesa de dulces típicos para boda en Boquete",
+    "status": "Pendiente de Respuesta"
+  }
+]

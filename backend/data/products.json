@@ -1,0 +1,119 @@
+[
+  {
+    "id": "bienmesabe",
+    "name": "Bienmesabe Chiricano",
+    "tagline": "El rey dulce de Tierras Altas con raspadura y leche fresca",
+    "description": "Postre insignia de la provincia de Chiriquí elaborado a fuego lento en pailas de cobre durante horas. Combinamos leche entera pura de ordeño diario con raspadura artesanal de caña dulce y harina de arroz tamizada, logrando esa textura cremosa, acaramelada y profunda inconfundible con un suave aroma a canela tostada.",
+    "price": 4.50,
+    "currency": "USD",
+    "category": "Tradición de Cuchara",
+    "portion": "Frasco artesanal sellado (8 oz)",
+    "ingredients": [
+      "Leche fresca de ordeño de Tierras Altas",
+      "Raspadura pura de caña de trapiche",
+      "Harina de arroz fina",
+      "Canela en raja de Ceilán",
+      "Pizca de sal marina de Aguadulce"
+    ],
+    "preparationTime": "Elaboración de 5 horas a fuego lento. Pedidos con 24h de anticipación.",
+    "badge": "Insignia Chiricana",
+    "rating": 4.9,
+    "reviewCount": 48,
+    "modelType": "bienmesabe",
+    "accentColor": "#854d0e"
+  },
+  {
+    "id": "arroz-con-leche",
+    "name": "Arroz con Leche Cremoso",
+    "tagline": "Cremosa nostalgia perfumada con clavo de olor y canela",
+    "description": "Una caricia al paladar que evoca las tardes en casa de la abuela. Arroz especial cocinado con leche fresca, leche evaporada y toque de leche condensada artesanal, especiado con astillas de canela, clavitos de olor y ralladura fresca de limón criollo. Servido en recipiente ecológico con lluvia de canela fina espolvoreada.",
+    "price": 3.75,
+    "currency": "USD",
+    "category": "Tradición de Cuchara",
+    "portion": "Tazón artesanal biodegradable (10 oz)",
+    "ingredients": [
+      "Arroz de grano seleccionado",
+      "Leche entera de pastoreo",
+      "Leche condensada casera",
+      "Canela entera y molida",
+      "Clavitos de olor",
+      "Ralladura de limón criollo"
+    ],
+    "preparationTime": "Cocción lenta matutina. Se sirve frío o al clima.",
+    "badge": "Más Popular",
+    "rating": 4.8,
+    "reviewCount": 62,
+    "modelType": "arroz-con-leche",
+    "accentColor": "#d97706"
+  },
+  {
+    "id": "gelatina-mosaico",
+    "name": "Gelatina de Mosaico Festiva",
+    "tagline": "Cubos frutales translúcidos en deliciosa crema de tres leches",
+    "description": "Colorida y refrescante obra de arte comestible. Cubos de gelatina elaborados artesanalmente con sabores a fresa de Cerro Punta, limón persa y mora silvestre, suspendidos en una suntuosa y suave base de crema de tres leches con toque sutil de vainilla bourbon. El postre favorito de grandes y chicos en cada celebración.",
+    "price": 3.50,
+    "currency": "USD",
+    "category": "Refrescantes y Fríos",
+    "portion": "Copa domo transparente (9 oz)",
+    "ingredients": [
+      "Zumos y extractos frutales (fresa de Cerro Punta, limón, mora)",
+      "Crema de leche fresca de Chiriquí",
+      "Leche condensada y evaporada",
+      "Grenetina de alta pureza",
+      "Extracto puro de vainilla"
+    ],
+    "preparationTime": "Cuajado y reposo en frío de 8 horas para máxima firmeza.",
+    "badge": "Favorito de Niños",
+    "rating": 4.9,
+    "reviewCount": 35,
+    "modelType": "gelatina-mosaico",
+    "accentColor": "#dc2626"
+  },
+  {
+    "id": "dulce-banana",
+    "name": "Dulce de Banana Casero",
+    "tagline": "Bizcocho húmedo con guineos madurados al sol y caramelo",
+    "description": "Bizcocho artesanal esponjoso y sumamente húmedo, preparado con plátanos guineos bien maduros cosechados en el valle, azúcar morena de caña, mantequilla de campo y nueces tostadas seleccionadas. Coronado con un baño ligero de caramelo tibio de canela. Perfecto para acompañar un buen café de altura de Boquete.",
+    "price": 4.00,
+    "currency": "USD",
+    "category": "Horneados del Día",
+    "portion": "Rebanada generosa individual (approx. 180g)",
+    "ingredients": [
+      "Guineos maduros orgánicos del valle",
+      "Harina de trigo enriquecida",
+      "Mantequilla de campo sin sal",
+      "Huevos de granja libres de jaula",
+      "Azúcar morena no refinada",
+      "Nueces tostadas y canela"
+    ],
+    "preparationTime": "Horneado fresco todas las mañanas a primera hora.",
+    "badge": "Ideal con Café",
+    "rating": 4.7,
+    "reviewCount": 41,
+    "modelType": "dulce-banana",
+    "accentColor": "#b45309"
+  },
+  {
+    "id": "bollos-maiz",
+    "name": "Bollos de Maíz Nuevo Dulces",
+    "tagline": "El auténtico sabor del campo envuelto en hojas tiernas de maíz",
+    "description": "Nuestros tradicionales bollos chiri-campesinos elaborados con maíz nuevo tierno molido en piedra el mismo día de elaboración. Suavemente endulzados con raspadura de caña, pizca de queso blanco del país desmenuzado y envueltos a mano en hojas tiernas de capullo de maíz, cocidos al vapor de leña como manda la costumbre.",
+    "price": 5.00,
+    "currency": "USD",
+    "category": "Tradición de Maíz",
+    "portion": "Bandeja artesanal con 2 bollos generosos",
+    "ingredients": [
+      "Maíz nuevo tierno cosechado en su punto",
+      "Queso prensado blanco artesanal",
+      "Raspadura rallada",
+      "Hojas verdes de maíz para envoltura",
+      "Pizca de mantequilla fresca y sal"
+    ],
+    "preparationTime": "Molienda y cocción al vapor fresca matutina.",
+    "badge": "100% Campo Panameño",
+    "rating": 5.0,
+    "reviewCount": 54,
+    "modelType": "bollos-maiz",
+    "accentColor": "#ca8a04"
+  }
+]

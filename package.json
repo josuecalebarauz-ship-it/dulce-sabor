@@ -1,0 +1,12 @@
+{
+  "name": "dulce-sabor",
+  "version": "1.0.0",
+  "description": "Tienda virtual de comercio electrónico con visuales 3D para Dulce Sabor - Postres Artesanales Panameños",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm start",
+    "build:frontend": "cd frontend && npm run build",
+    "preview:frontend": "cd frontend && npm run preview"
+  }
+}

@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  --color-caramel-50: #fffdf5;
+  --color-caramel-100: #fef7e0;
+  --color-caramel-200: #fcebbb;
+  --color-caramel-300: #f9d88a;
+  --color-caramel-400: #f4be54;
+  --color-caramel-500: #d97706;
+  --color-caramel-600: #b45309;
+  --color-caramel-700: #92400e;
+
+  --color-cacao-950: #1d0f0a;
+  --color-cacao-900: #2c1810;
+  --color-cacao-800: #4a2b1b;
+  --color-cacao-700: #674029;
+  --color-cacao-600: #885739;
+
+  --color-cream-50: #ffffff;
+  --color-cream-100: #fffdf9;
+  --color-cream-200: #fbf6ec;
+  --color-cream-300: #f2e9d7;
+  --color-cream-400: #e5d6be;
+
+  --color-terracota-500: #dc2626;
+  --color-terracota-600: #b91c1c;
+  --color-terracota-700: #991b1b;
+}
+
+/* Tipografía de marca */
+.font-brand-title {
+  font-family: var(--font-serif);
+}
+
+.font-handwriting {
+  font-family: var(--font-hand);
+}
+
+/* Efectos de vidrio y sombra suave */
+.glass-card {
+  background: rgba(255, 253, 249, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 214, 190, 0.6);
+}
+
+.glass-card-dark {
+  background: rgba(44, 24, 16, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+}
+
+.artisan-shadow {
+  box-shadow: 0 10px 30px -10px rgba(74, 43, 27, 0.12), 0 4px 6px -2px rgba(74, 43, 27, 0.05);
+}
+
+.artisan-shadow-lg {
+  box-shadow: 0 20px 45px -15px rgba(74, 43, 27, 0.22), 0 8px 12px -4px rgba(74, 43, 27, 0.08);
+}
+
+/* Personalización de barra de scroll */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fbf6ec;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d97706;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b45309;
+}

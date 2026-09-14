@@ -1,0 +1,37 @@
+[
+  {
+    "id": "pickup",
+    "name": "Retiro en Taller Dulce Sabor (Volcán Centro)",
+    "description": "Retiro gratuito en nuestro taller artesanal frente al Parque Central de Volcán",
+    "cost": 0.00,
+    "estimatedTime": "Listo en 24h tras confirmación del pedido"
+  },
+  {
+    "id": "volcan",
+    "name": "Volcán y Alrededores",
+    "description": "Entrega a domicilio en casco urbano de Volcán y áreas residenciales cercanas",
+    "cost": 2.50,
+    "estimatedTime": "Entrega en franja horaria programada (mañana o tarde)"
+  },
+  {
+    "id": "bambito",
+    "name": "Bambito",
+    "description": "Entrega a domicilio ruta hacia Cerro Punta, área de Bambito y hoteles",
+    "cost": 3.00,
+    "estimatedTime": "Entrega en franja horaria programada"
+  },
+  {
+    "id": "cerro-punta",
+    "name": "Cerro Punta & Guadalupe",
+    "description": "Entrega directa hasta fincas y residencias en Cerro Punta y Guadalupe",
+    "cost": 3.50,
+    "estimatedTime": "Entrega en franja horaria programada"
+  },
+  {
+    "id": "paso-ancho",
+    "name": "Paso Ancho & Nueva California",
+    "description": "Ruta agrícola y residencial de Paso Ancho y alrededores",
+    "cost": 2.75,
+    "estimatedTime": "Entrega en franja horaria programada"
+  }
+]
