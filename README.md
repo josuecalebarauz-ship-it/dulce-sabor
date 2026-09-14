@@ -124,4 +124,20 @@ npm run dev
 > Vite iniciará el servidor de desarrollo en `http://localhost:3000`.
 
 ### Paso 3: Abrir en el Navegador
-Visita **`http://localhost:3000`** en tu navegador para interactuar con la tienda, rotar los modelos 3D con el cursor o el dedo, probar el carrito, seleccionar tu zona en Tierras Altas y completar el checkout con Yappy o ACH.
+Visita **`http://localhost:3000`** en tu navegador para interactuar con la tienda, ver las imágenes cinemáticas Ken Burns, la galería de fotos, probar el carrito, seleccionar tu zona en Tierras Altas y completar el checkout simulado con Yappy o ACH.
+
+---
+
+## 🌐 Despliegue en Netlify (Producción)
+
+### Variables de Entorno en Netlify:
+1. En tu dashboard de Netlify ve a **Site configuration > Environment variables**.
+2. Agrega la variable:
+   - **Key:** `VITE_API_URL`
+   - **Value:** `https://dulce-sabor-backend.onrender.com/api`
+
+### Configuración de Build en Netlify:
+- **Base directory:** `frontend`
+- **Build command:** `npm run build`
+- **Publish directory:** `frontend/dist`
+- El archivo `frontend/public/_redirects` ya se encuentra configurado para gestionar el enrutamiento SPA sin errores 404.

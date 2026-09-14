@@ -1,6 +1,10 @@
-// Servicio de comunicación con la API REST de Dulce Sabor
-
-const API_BASE_URL = '/api';
+// Configuración dinámica de la URL del Backend (Local vs Producción)
+// En desarrollo local: usa '/api' (a través del proxy de Vite hacia localhost:5000) o variable VITE_API_URL
+// En producción (Netlify): usa la variable VITE_API_URL configurada hacia Render
+const RAW_API_URL = import.meta.env.VITE_API_URL || '/api';
+const API_BASE_URL = RAW_API_URL.endsWith('/api')
+  ? RAW_API_URL
+  : `${RAW_API_URL.replace(/\/+$/, '')}/api`;
 
 // Datos de respaldo por si el servidor backend se encuentra temporalmente apagado
 export const FALLBACK_PRODUCTS = [
