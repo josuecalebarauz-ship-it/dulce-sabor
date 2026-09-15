@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Mascota({ className = "" }) {
@@ -36,6 +36,17 @@ export default function Mascota({ className = "" }) {
       return () => clearTimeout(timer);
     }
   }, [showBubble]);
+
+  const videoRef = useRef(null);
+
+  // Garantizar reproducción automática sin sonido en navegadores móviles y desktop
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
 
   return (
     <div className={`relative inline-flex flex-col items-center select-none ${className}`}>
@@ -82,18 +93,25 @@ export default function Mascota({ className = "" }) {
           }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="relative group"
+          className="relative group bg-transparent"
         >
-          {/* Resplandor cálido de fondo */}
-          <div className="absolute inset-0 bg-[#FCEBBB]/70 rounded-full blur-xl scale-75 -z-10 group-hover:bg-[#F4BE54]/60 transition-colors" />
-
-          {/* Imagen de la Mascota */}
-          <motion.img
-            src="/images/mascota-dulce-sabor.png"
-            alt="Mascota oficial Dulce Sabor"
-            className="w-24 sm:w-28 md:w-32 lg:w-36 h-auto drop-shadow-md object-contain"
-            draggable={false}
-          />
+          {/* Video de la Mascota con fondo transparente */}
+          <video
+            ref={videoRef}
+            src="/videos/chef-saludo.webm"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            loading="lazy"
+            aria-label="Chef animado de Dulce Sabor saludando"
+            className="w-24 sm:w-28 md:w-32 lg:w-36 h-auto object-contain border-0 outline-none bg-transparent shadow-none pointer-events-none block"
+            style={{ background: 'transparent' }}
+          >
+            <source src="/videos/chef-saludo.webm" type="video/webm" />
+            <source src="/videos/Chef_saludo.webm" type="video/webm" />
+          </video>
         </motion.div>
       </motion.div>
     </div>
