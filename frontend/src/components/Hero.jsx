@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import HeroImageShowcase from './HeroImageShowcase';
+import Mascota from './Mascota';
 import { useCart } from '../context/CartContext';
 import { Sparkles, ShoppingBag, Images, Heart, ShieldCheck, Clock } from 'lucide-react';
 
@@ -39,9 +40,15 @@ export default function Hero({ products = [] }) {
               <span>100% Casero • Tierras Altas de Chiriquí</span>
             </div>
 
-            <h1 className="font-brand-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#2C1810] tracking-tight leading-[1.15] mb-4">
-              El Dulce Encanto de la <span className="text-[#B45309] italic font-serif">Tradición Panameña</span>
-            </h1>
+            {/* Título Principal y Mascota Animada */}
+            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 sm:gap-6 mb-4">
+              <div className="shrink-0">
+                <Mascota />
+              </div>
+              <h1 className="font-brand-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#2C1810] tracking-tight leading-[1.15] text-center lg:text-left">
+                El Dulce Encanto de la <span className="text-[#B45309] italic font-serif">Tradición Panameña</span>
+              </h1>
+            </div>
 
             <p className="text-base sm:text-lg text-[#674029] leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
               Postres típicos elaborados con recetas familiares de antaño, leche fresca de ordeño diario e ingredientes puros de la campiña. Sin intermediarios, directo de nuestro taller artesanal en Volcán hasta tu hogar.
