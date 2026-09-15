@@ -74,27 +74,13 @@ export default function Mascota({ className = "" }) {
         )}
       </AnimatePresence>
 
-      {/* Contenedor de animación de entrada (opacity 0 -> 1, scale 0.8 -> 1 con delay) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-        className="relative cursor-pointer"
+      {/* Contenedor 100% fijo en su posición (sin animación de flotación ni movimiento vertical) */}
+      <div
+        className="relative cursor-pointer bg-transparent"
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
       >
-        {/* Animación "idle" en loop infinito (traslación vertical suave 10-15px) */}
-        <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{
-            duration: 3,
-            ease: "easeInOut",
-            repeat: Infinity
-          }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="relative group bg-transparent"
-        >
+        <div className="relative bg-transparent">
           {/* Video de la Mascota con fondo transparente */}
           <video
             ref={videoRef}
@@ -112,8 +98,8 @@ export default function Mascota({ className = "" }) {
             <source src="/videos/chef-saludo.webm" type="video/webm" />
             <source src="/videos/Chef_saludo.webm" type="video/webm" />
           </video>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
