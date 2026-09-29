@@ -1,6 +1,6 @@
-# 🍮 Dulce Sabor | Tienda Virtual 3D de Postres Artesanales Panameños
+# 🍮 Dulce Sabor | Tienda Virtual de Postres Artesanales Panameños
 
-Sitio web completo de comercio electrónico con visuales 3D interactivos para **Dulce Sabor**, un negocio artesanal de postres tradicionales de Tierras Altas, provincia de Chiriquí, Panamá.
+Sitio web completo de comercio electrónico para **Dulce Sabor**, un negocio artesanal de postres tradicionales de Caisán, distrito de Renacimiento, provincia de Chiriquí, Panamá.
 
 ---
 
@@ -33,70 +33,67 @@ dulce-sabor/
 │   ├── data/
 │   │   ├── products.json     # Catálogo de los 5 postres tradicionales
 │   │   ├── orders.json       # Persistencia de pedidos completados
-│   │   ├── zones.json        # Zonas y tarifas de entrega en Tierras Altas
+│   │   ├── zones.json        # Zonas y tarifas de entrega en Renacimiento
 │   │   └── quotes.json       # Solicitudes de banquetes y eventos
-│   ├── server.js             # Servidor Express y rutas REST comentadas en español
+│   ├── server.js             # Servidor Express y rutas REST
 │   └── package.json
 │
 ├── frontend/
 │   ├── public/
+│   │   ├── images/brand/     # Activos de marca optimizados en WebP
+│   │   └── _redirects        # Enrutamiento SPA en Netlify
+│   ├── originales-brand/     # Copia de respaldo de PNGs de alta resolución
 │   ├── src/
+│   │   ├── config/
+│   │   │   └── negocio.js    # Configuración central (Yappy, WhatsApp, Zonas)
 │   │   ├── components/
-│   │   │   ├── three/        # Componentes y modelos 3D con Three.js
-│   │   │   │   ├── DessertCanvas.jsx        # Canvas reusable con luces y sombras
-│   │   │   │   ├── Bienmesabe3D.jsx         # Modelo 3D: Vasija de barro y canela
-│   │   │   │   ├── ArrozConLeche3D.jsx      # Modelo 3D: Tazón de cerámica y canela
-│   │   │   │   ├── GelatinaMosaico3D.jsx    # Modelo 3D: Gelatina translúcida y frutos
-│   │   │   │   ├── DulceBanana3D.jsx        # Modelo 3D: Queque húmedo y caramelo
-│   │   │   │   ├── BollosMaiz3D.jsx         # Modelo 3D: Bollos en capullo de maíz
-│   │   │   │   ├── DessertModelPicker.jsx   # Selector dinámico de modelo 3D
-│   │   │   │   └── HeroShowcase3D.jsx       # Escenario principal del Hero
-│   │   │   ├── Navbar.jsx                   # Barra de navegación con contador
-│   │   │   ├── Hero.jsx                     # Sección hero inmersiva
-│   │   │   ├── ProductCard.jsx              # Tarjeta de producto con viewport 3D
-│   │   │   ├── ProductCatalog.jsx           # Catálogo con filtros de categoría
-│   │   │   ├── ProductDetailModal.jsx       # Modal 3D detallado 360° con zoom
-│   │   │   ├── CartDrawer.jsx               # Carrito lateral deslizable
-│   │   │   ├── CheckoutModal.jsx            # Checkout panameño y zonas
-│   │   │   ├── OrderSuccessModal.jsx        # Recibo formal y WhatsApp
-│   │   │   ├── AboutSection.jsx             # Modelo B2C e historia tradicional
+│   │   │   ├── Navbar.jsx                   # Encabezado con logo oficial y navegación
+│   │   │   ├── Hero.jsx                     # Hero con video de mascota y patrón de marca
+│   │   │   ├── ProductCard.jsx              # Tarjeta de producto con galería
+│   │   │   ├── ProductCatalog.jsx           # Catálogo con filtros y empaques
+│   │   │   ├── DeliveryZonesSection.jsx     # Zonas de entrega en Renacimiento
+│   │   │   ├── PackagingSection.jsx         # Presentación oficial de empaques
+│   │   │   ├── MascotaBrandSection.jsx      # Conoce a la mascota, bocetos y stickers
+│   │   │   ├── AboutSection.jsx             # Historia, tradición y modelo B2C
 │   │   │   ├── EventQuoteSection.jsx        # Formulario de cotización de eventos
-│   │   │   └── Footer.jsx                   # Contacto, cobertura y redes
+│   │   │   ├── Footer.jsx                   # Contacto, cobertura y redes
+│   │   │   ├── CartDrawer.jsx               # Carrito deslizable
+│   │   │   ├── CheckoutModal.jsx            # Checkout exclusivo por Yappy
+│   │   │   └── OrderSuccessModal.jsx        # Pantalla con número DS-XXXXXX y WhatsApp
 │   │   ├── context/
-│   │   │   └── CartContext.jsx              # Estado global del carrito y modales
+│   │   │   └── CartContext.jsx              # Estado del carrito con sessionStorage
 │   │   ├── services/
-│   │   │   └── api.js                       # Cliente HTTP con fallback resiliente
+│   │   │   └── api.js                       # Cliente HTTP con recálculo de precios
 │   │   ├── App.jsx                          # Componente raíz
 │   │   ├── main.jsx                         # Entrada de React
-│   │   └── index.css                        # Estilos globales y paleta artesanal
+│   │   └── index.css                        # Estilos globales y Tailwind v4
 │   ├── index.html
-│   ├── vite.config.js                       # Configuración de proxy a Express
+│   ├── vite.config.js
 │   └── package.json
-└── package.json                             # Scripts globales
+└── package.json
 ```
 
 ---
 
-## 🍮 Catálogo de Postres Tradicionales en 3D
+## 🍮 Catálogo de Postres Tradicionales
 
-1. **Bienmesabe Chiricano:** Vasija de barro con dulce cocinado a fuego lento con leche fresca de ordeño, raspadura de trapiche y canela en rama.
-2. **Arroz con Leche Cremoso:** Tazón de cerámica con arroz de grano selecto, leche condensada casera, lluvia de canela y toque de limón criollo.
-3. **Gelatina de Mosaico Festiva:** Obra de arte comestible con cubos translúcidos de fresa de Cerro Punta, limón y mora sobre una rica base de tres leches.
-4. **Dulce de Banana Casero:** Bizcocho húmedo horneado con guineos maduros del valle, nueces tostadas y baño ligero de caramelo tibio.
-5. **Bollos de Maíz Nuevo Dulces:** Bollos típicos chiri-campesinos elaborados con maíz tierno molido en piedra, endulzados con raspadura y envueltos en capullos tiernos de maíz.
+1. **Bienmesabe Chiricano (B/. 2.25):** Postre insignia de Caisán cocinado a fuego lento con leche fresca de ordeño, raspadura de trapiche y canela en rama.
+2. **Arroz con Leche Cremoso (B/. 1.88):** Arroz especial con leche entera, leche condensada casera, lluvia de canela fina y toque de limón criollo.
+3. **Gelatina de Mosaico Festiva (B/. 1.75):** Cubos translúcidos de fresa, limón y mora suspendidos en suave crema de tres leches.
+4. **Dulce de Banana Casero (B/. 2.00):** Bizcocho húmedo horneado con guineos maduros del valle, nueces tostadas y baño de caramelo tibio.
+5. **Bollos de Maíz Nuevo Dulces (B/. 2.50):** Bollos tradicionales campesinos elaborados con maíz tierno molido en piedra, raspadura y envueltos en hojas tiernas de maíz.
 
 ---
 
-## 💼 Contexto Académico del Negocio
+## 💼 Contexto del Negocio & Logística
 
-- **Modelo B2C:** Venta directa al consumidor sin intermediarios para conservar la pureza artesanal.
-- **Pedidos por Encargo:** Los postres se cocinan frescos bajo demanda (requieren 24h de anticipación).
-- **Logística en Chiriquí:** Cobertura para **Volcán**, **Cerro Punta & Guadalupe**, **Bambito**, **Paso Ancho** y opción de **Retiro en Taller**.
-- **Formas de Pago Panameñas:**
-  - **Yappy:** Billetera móvil más utilizada en Panamá (@dulcesaborpanama / 6167-2499).
-  - **ACH:** Transferencia bancaria directa (Banco General).
-  - **Pago Contra Entrega:** Con anticipo obligatorio del 50% vía Yappy o ACH, y saldo restante al momento de recibir o retirar.
-- **Eventos:** Formulario interactivo para cotizar mesas de dulces para bodas, cumpleaños y banquetes familiares.
+- **Ubicación:** Caisán, distrito de Renacimiento, provincia de Chiriquí, Panamá.
+- **Modelo B2C:** Venta directa al consumidor sin intermediarios para conservar la frescura de la leche y los ingredientes agrícolas.
+- **Logística Rural:** Entregas bajo encargo con **24 horas de anticipación**. Cobertura en: Plaza de Caisán, Río Sereno, Santa Marta, Cañas Gordas, Monte Lirio, Breñón y San Andrés.
+- **Pago por Yappy (Sin Pasarela Externa):**
+  - Número de Yappy: **6167-2499**.
+  - El cliente realiza su pedido, recibe su código único `DS-XXXXXX` con estado "Pendiente de pago" y envía su comprobante por WhatsApp para confirmación manual.
+- **Identidad de Marca:** Nueva imagen visual con logo oficial, patrones decorativos sutiles, mascota de la marca y empaques artesanales.
 
 ---
 
