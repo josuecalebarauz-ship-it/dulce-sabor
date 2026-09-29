@@ -1,10 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Users, MapPin, Sparkles, CheckCircle, ShieldCheck, Flame, Coffee } from 'lucide-react';
+import { LOCALIDAD, YAPPY_NUMERO } from '../config/negocio';
 
 export default function AboutSection() {
   return (
     <section id="nosotros" className="py-16 md:py-24 bg-[#FFFDF9] relative overflow-hidden">
+      {/* Patrón decorativo de textura sutil */}
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.035] pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/brand/patron-textura.webp')",
+          backgroundRepeat: 'repeat',
+          backgroundSize: '400px 400px'
+        }}
+        aria-hidden="true"
+      />
+
       {/* Elementos decorativos de fondo */}
       <div className="absolute top-1/2 left-0 -z-10 w-72 h-72 bg-[#FCEBBB]/40 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-[#FDF6E2]/60 rounded-full blur-3xl" />
@@ -18,11 +30,11 @@ export default function AboutSection() {
           </div>
 
           <h2 className="font-brand-title text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C1810] mb-4">
-            Tradición que Une a las Familias en <span className="text-[#B45309] font-serif italic">Tierras Altas</span>
+            Tradición que Une a las Familias en <span className="text-[#B45309] font-serif italic">Caisán, Renacimiento</span>
           </h2>
 
           <p className="text-[#674029] text-base sm:text-lg leading-relaxed">
-            "Dulce Sabor" nació con la misión de rescatar y mantener vivos los sabores auténticos de la dulcería panameña tradicional, cocinados lentamente como lo hacían nuestras abuelas en las faldas del Volcán Barú.
+            "Dulce Sabor" nació con la misión de rescatar y mantener vivos los sabores auténticos de la dulcería panameña tradicional, cocinados lentamente como lo hacían nuestras abuelas en {LOCALIDAD.direccionCompleta}.
           </p>
         </div>
 
@@ -63,7 +75,7 @@ export default function AboutSection() {
               Orgullo de Chiriquí
             </h3>
             <p className="text-sm text-[#674029] leading-relaxed">
-              Empleamos leche entera pura de ordeño de Tierras Altas, raspadura de trapiche de caña y frutas frescas cosechadas en fincas vecinas de Volcán, Cerro Punta y Bambito.
+              Empleamos leche entera pura de ordeño de fincas de Caisán, raspadura de trapiche de caña y frutas frescas cosechadas en comunidades agrícolas de Renacimiento y Chiriquí.
             </p>
           </div>
         </div>
@@ -83,7 +95,7 @@ export default function AboutSection() {
                 Público Objetivo Identificado
               </h4>
               <p className="text-[#E5D6BE] leading-relaxed mb-3">
-                Familias, residentes y visitantes de 18 a 55 años en Chiriquí (Volcán, Cerro Punta, Bambito, Paso Ancho y David) que anhelan postres tradicionales para cumpleaños, celebraciones familiares o antojo personal, priorizando la calidad casera sobre los productos procesados de supermercado.
+                Familias, residentes y visitantes de 18 a 55 años en Chiriquí (Caisán, Río Sereno, Santa Marta, Cañas Gordas, Monte Lirio, Breñón, San Andrés y alrededores) que anhelan postres tradicionales para cumpleaños, celebraciones familiares o antojo personal, priorizando la calidad casera sobre los productos procesados de supermercado.
               </p>
               <ul className="space-y-1.5 text-[#E5D6BE]">
                 <li className="flex items-center gap-2">
@@ -102,12 +114,12 @@ export default function AboutSection() {
                 Modalidad Comercial & Pagos Panameños
               </h4>
               <p className="text-[#E5D6BE] leading-relaxed mb-3">
-                Tienda virtual 100% digital B2C con pedidos bajo encargo (frescura programada de 24h). Integra pasarelas adaptadas a la realidad del comercio panameño: billetera móvil <strong>Yappy</strong>, transferencias <strong>ACH</strong> interbancarias y <strong>pago en efectivo</strong> contra entrega en Tierras Altas.
+                Tienda virtual 100% digital B2C con pedidos bajo encargo (frescura programada de 24h). Pagos directos por <strong>Yappy ({YAPPY_NUMERO})</strong> sin comisiones de pasarelas, con verificación y atención personalizada directa por WhatsApp.
               </p>
               <ul className="space-y-1.5 text-[#E5D6BE]">
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-[#F59E0B] shrink-0" />
-                  <span>Logística local zonificada con cálculo dinámico de flete</span>
+                  <span>Logística rural con tarifas de entrega transparentes</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-[#F59E0B] shrink-0" />

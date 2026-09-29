@@ -4,12 +4,13 @@ import HeroImageShowcase from './HeroImageShowcase';
 import Mascota from './Mascota';
 import { useCart } from '../context/CartContext';
 import { Sparkles, ShoppingBag, Images, Heart, ShieldCheck, Clock } from 'lucide-react';
+import { LOCALIDAD } from '../config/negocio';
 
 export default function Hero({ products = [] }) {
   const [activeDessert, setActiveDessert] = useState(products[0] || {
     id: 'bienmesabe',
     name: 'Bienmesabe Chiricano',
-    tagline: 'El rey dulce de Tierras Altas con raspadura y leche fresca',
+    tagline: 'El rey dulce de Caisán con raspadura y leche fresca',
     price: 2.25,
     portion: 'Frasco artesanal (8 oz)',
     accentColor: '#854d0e'
@@ -21,6 +22,17 @@ export default function Hero({ products = [] }) {
 
   return (
     <section id="inicio" className="relative pt-4 pb-16 md:pt-8 md:pb-24 overflow-hidden">
+      {/* Patrón de identidad visual de fondo sutil */}
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.035] pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/brand/patron-principal.webp')",
+          backgroundRepeat: 'repeat',
+          backgroundSize: '360px 360px'
+        }}
+        aria-hidden="true"
+      />
+
       {/* Fondos degradados cálidos */}
       <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-[#FDF6E2] rounded-full blur-3xl opacity-70" />
       <div className="absolute bottom-10 left-0 -z-10 w-80 h-80 bg-[#FCEBBB]/50 rounded-full blur-3xl opacity-60" />
@@ -37,7 +49,7 @@ export default function Hero({ products = [] }) {
             {/* Tagline artesanal */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FCEBBB] border border-[#F4BE54]/60 text-[#78350F] text-xs font-semibold tracking-wide uppercase mb-5 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#D97706]" />
-              <span>100% Casero • Tierras Altas de Chiriquí</span>
+              <span>100% Casero • {LOCALIDAD.direccionCorta}</span>
             </div>
 
             {/* Título Principal y Mascota Animada */}
@@ -51,7 +63,7 @@ export default function Hero({ products = [] }) {
             </div>
 
             <p className="text-base sm:text-lg text-[#674029] leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              Postres típicos elaborados con recetas familiares de antaño, leche fresca de ordeño diario e ingredientes puros de la campiña. Sin intermediarios, directo de nuestro taller artesanal en Volcán hasta tu hogar.
+              Postres típicos elaborados con recetas familiares de antaño, leche fresca de ordeño diario e ingredientes puros de la campiña. Sin intermediarios, directo de nuestro taller artesanal en {LOCALIDAD.direccionCompleta} hasta tu hogar.
             </p>
 
             {/* Llamados a la acción */}

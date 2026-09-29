@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+import { FALLBACK_PRODUCTS } from '../services/api';
+
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
@@ -15,7 +17,16 @@ export function CartProvider({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProductForModal, setSelectedProductForModal] = useState(null);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [completedOrder, setCompletedOrder] = useState(null);
+
+  // Guardar y recuperar el pedido generado en sessionStorage para evitar duplicados al recargar
+  const [completedOrder, setCompletedOrder] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('dulce_sabor_pedido_actual');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
 
   useEffect(() => {
     try {
@@ -24,6 +35,18 @@ export function CartProvider({ children }) {
       console.warn('Error al guardar carrito en localStorage:', err);
     }
   }, [cartItems]);
+
+  useEffect(() => {
+    try {
+      if (completedOrder) {
+        sessionStorage.setItem('dulce_sabor_pedido_actual', JSON.stringify(completedOrder));
+      } else {
+        sessionStorage.removeItem('dulce_sabor_pedido_actual');
+      }
+    } catch (err) {
+      console.warn('Error al sincronizar sessionStorage de pedido:', err);
+    }
+  }, [completedOrder]);
 
   const addToCart = (product, quantity = 1) => {
     setCartItems(prev => {
@@ -62,8 +85,15 @@ export function CartProvider({ children }) {
     setCartItems([]);
   };
 
+  const getCatalogPrice = (id, fallback) => {
+    const p = FALLBACK_PRODUCTS.find(item => item.id === id);
+    return p ? p.price : fallback;
+  };
+
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  const cartSubtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const cartSubtotal = Number(
+    cartItems.reduce((acc, item) => acc + (getCatalogPrice(item.id, item.price) * item.quantity), 0).toFixed(2)
+  );
 
   return (
     <CartContext.Provider

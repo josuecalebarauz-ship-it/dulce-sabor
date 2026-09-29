@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import confetti from 'canvas-confetti';
-import { CheckCircle2, MapPin, Calendar, Clock, Phone, MessageSquare, Download, Check, Sparkles } from 'lucide-react';
+import { YAPPY_NUMERO, WHATSAPP_NUMERO, LOCALIDAD } from '../config/negocio';
+import { CheckCircle2, MapPin, Calendar, Clock, Phone, MessageSquare, AlertCircle, ShoppingBag } from 'lucide-react';
 
 export default function OrderSuccessModal() {
   const { completedOrder, setCompletedOrder } = useCart();
@@ -11,7 +12,7 @@ export default function OrderSuccessModal() {
     if (completedOrder) {
       // Disparar confeti festivo
       confetti({
-        particleCount: 100,
+        particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
         colors: ['#D97706', '#B45309', '#F59E0B', '#DC2626', '#16A34A']
@@ -23,15 +24,28 @@ export default function OrderSuccessModal() {
 
   const order = completedOrder;
 
-  const advanceText = order.payment.method === 'cash'
-    ? `\n- Anticipo (50% pagado): B/.${(order.total * 0.5).toFixed(2)}\n- Saldo al recibir (50%): B/.${(order.total * 0.5).toFixed(2)}`
-    : '';
+  // Lista de productos para el mensaje de WhatsApp
+  const itemsText = order.items
+    .map(it => `• ${it.quantity}x ${it.name} (B/.${((it.unitPrice || it.price) * it.quantity).toFixed(2)})`)
+    .join('\n');
 
-  // Mensaje automático oficial para WhatsApp
-  const whatsappMessage = encodeURIComponent(
-    `Hola, Dulce Sabor. Acabo de realizar un pedido desde la página web. Quisiera confirmar los detalles de mi pedido:\n- Pedido: ${order.orderId}\n- Cliente: ${order.customer.name}\n- Total: B/.${order.total.toFixed(2)}${advanceText}\n- Método de Pago: ${order.payment.method.toUpperCase()}\n- Zona de Entrega: ${order.delivery.zoneName}\n- Fecha de Entrega: ${order.delivery.date} (${order.delivery.timeSlot})`
-  );
-  const whatsappUrl = `https://wa.me/50761672499?text=${whatsappMessage}`;
+  const deliveryCostVal = order.deliveryCost ?? order.delivery?.cost ?? 0;
+
+  // Mensaje automático oficial y detallado para WhatsApp
+  const rawWhatsappMsg =
+    `¡Hola, Dulce Sabor! Acabo de registrar mi pedido en la web.\n\n` +
+    `📋 Número de Pedido: ${order.orderId}\n` +
+    `👤 Nombre: ${order.customer?.name || 'Cliente'}\n` +
+    `📞 Teléfono: ${order.customer?.phone || ''}\n` +
+    `📍 Punto de Entrega: ${order.customer?.address || ''} (${order.delivery?.zoneName || order.customer?.comunidad || LOCALIDAD.comunidad})\n\n` +
+    `🍮 Productos:\n${itemsText}\n\n` +
+    `📦 Costo de Envío: B/.${Number(deliveryCostVal).toFixed(2)}\n` +
+    `💰 Total a Pagar: B/.${Number(order.total).toFixed(2)}\n\n` +
+    `💳 Pago por Yappy al: ${YAPPY_NUMERO}\n` +
+    `🔖 Concepto Yappy: ${order.orderId}\n\n` +
+    `Adjunto mi comprobante de pago por este medio para su verificación manual. ¡Muchas gracias!`;
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(rawWhatsappMsg)}`;
 
   return (
     <AnimatePresence>
@@ -49,38 +63,95 @@ export default function OrderSuccessModal() {
           exit={{ opacity: 0, scale: 0.9, y: 30 }}
           className="relative w-full max-w-2xl bg-[#FFFDF9] rounded-3xl shadow-2xl border border-[#E5D6BE] overflow-hidden z-10 my-auto max-h-[92vh] flex flex-col"
         >
-          {/* Cabecera de Éxito */}
-          <div className="p-6 text-center bg-gradient-to-b from-[#FDF6E2] to-[#FFFDF9] border-b border-[#E5D6BE]">
-            <div className="w-16 h-16 rounded-full bg-[#16A34A] text-white flex items-center justify-center mx-auto mb-3 shadow-lg shadow-[#16A34A]/20">
-              <CheckCircle2 className="w-10 h-10" />
+          {/* Cabecera con Mascota e Identidad */}
+          <div className="p-6 text-center bg-gradient-to-b from-[#FDF6E2] to-[#FFFDF9] border-b border-[#E5D6BE] relative">
+            <div className="flex justify-center mb-3">
+              <div className="relative">
+                <img
+                  src="/images/brand/personaje-variantes.webp"
+                  alt="Mascota oficial Dulce Sabor saludando"
+                  loading="lazy"
+                  className="w-24 h-24 object-contain mx-auto drop-shadow-md"
+                />
+                <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-[#16A34A] text-white flex items-center justify-center shadow-md">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+              </div>
             </div>
+
             <span className="text-xs font-bold text-[#B45309] uppercase tracking-wider block mb-1">
-              ¡Pedido Confirmado con Éxito!
+              ¡Pedido Registrado con Éxito!
             </span>
             <h2 className="font-brand-title text-2xl sm:text-3xl font-bold text-[#2C1810]">
               Gracias por preferir Dulce Sabor
             </h2>
-            <p className="text-sm text-[#674029] mt-1">
-              Tus postres tradicionales comenzarán su proceso artesanal de cocción fresca.
+            <p className="text-xs sm:text-sm text-[#674029] mt-1 max-w-md mx-auto">
+              Tus postres tradicionales comenzarán su proceso artesanal en {LOCALIDAD.direccionCorta}.
             </p>
           </div>
 
           {/* Cuerpo del Recibo */}
-          <div className="overflow-y-auto p-5 sm:p-6 space-y-5 text-xs text-[#4A2B1B]">
-            {/* Tarjeta de Código de Pedido */}
+          <div className="overflow-y-auto p-5 sm:p-6 space-y-4 text-xs text-[#4A2B1B]">
+            {/* Tarjeta de Código de Pedido y Estado */}
             <div className="p-4 rounded-2xl bg-[#FBF6EC] border border-[#E5D6BE] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
               <div>
                 <span className="text-[10px] text-[#78350F] uppercase font-bold tracking-wider block">
-                  Número de Pedido
+                  Número de Pedido Único
                 </span>
-                <span className="text-xl font-extrabold text-[#78350F] font-mono tracking-wider">
+                <span className="text-2xl font-extrabold text-[#78350F] font-mono tracking-wider">
                   {order.orderId}
                 </span>
               </div>
+              <div className="flex flex-col items-center sm:items-end gap-1">
+                <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 font-extrabold text-xs flex items-center gap-1.5 shadow-xs">
+                  <Clock className="w-3.5 h-3.5 text-amber-700" />
+                  <span>Pendiente de pago</span>
+                </span>
+                <span className="text-[10px] text-[#78350F]">
+                  Confirmación manual por el negocio
+                </span>
+              </div>
+            </div>
+
+            {/* Total a Pagar Destacado */}
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#FEF3C7] to-[#FDF6E2] border border-[#F59E0B]/40 flex items-center justify-between">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#92400E] block">
+                  Total a Pagar:
+                </span>
+                <span className="text-xs text-[#78350F]">
+                  Incluye postres y flete a {order.delivery?.zoneName || 'tu comunidad'}
+                </span>
+              </div>
+              <span className="text-2xl sm:text-3xl font-extrabold text-[#B45309]">
+                B/. {Number(order.total).toFixed(2)}
+              </span>
+            </div>
+
+            {/* Guía e Instrucciones de Pago por Yappy */}
+            <div className="p-4 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE] space-y-2">
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#DCFCE7] text-[#166534] font-bold text-xs flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" />
-                  {order.status || 'En preparación'}
+                <div className="w-8 h-8 rounded-lg bg-[#0089D0] text-white font-extrabold flex items-center justify-center text-xs shadow-xs">
+                  Y
+                </div>
+                <span className="font-bold text-[#1E40AF] uppercase tracking-wider text-xs">
+                  Instrucciones de Pago por Yappy
+                </span>
+              </div>
+
+              <div className="p-3 bg-white rounded-xl border border-[#DBEAFE] space-y-1">
+                <p className="text-sm font-bold text-[#1E3A8A] leading-relaxed">
+                  Paga por Yappy al <span className="font-mono text-base font-extrabold text-[#0F172A] bg-amber-100 px-1.5 py-0.5 rounded">{YAPPY_NUMERO}</span> con el número de pedido como concepto y envía tu comprobante por WhatsApp.
+                </p>
+                <p className="text-[11px] text-[#475569]">
+                  Concepto / Nota en Yappy: <strong className="font-mono text-amber-900">{order.orderId}</strong>
+                </p>
+              </div>
+
+              <div className="text-[11px] text-[#1E40AF] bg-[#DBEAFE]/50 p-2.5 rounded-lg flex items-start gap-1.5">
+                <AlertCircle className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
+                <span>
+                  <strong>Aviso importante:</strong> El estado de tu pedido permanecerá estrictamente como <strong>"Pendiente de pago"</strong> hasta que nuestro equipo verifique manualmente la transacción de Yappy en WhatsApp.
                 </span>
               </div>
             </div>
@@ -91,33 +162,33 @@ export default function OrderSuccessModal() {
                 <span className="font-bold text-[#78350F] uppercase tracking-wider text-[10px] block">
                   Cliente & Contacto:
                 </span>
-                <p className="font-bold text-[#2C1810] text-sm">{order.customer.name}</p>
+                <p className="font-bold text-[#2C1810] text-sm">{order.customer?.name}</p>
                 <p className="flex items-center gap-1 text-[#674029]">
-                  <Phone className="w-3 h-3 text-[#D97706]" /> {order.customer.phone}
+                  <Phone className="w-3 h-3 text-[#16A34A]" /> {order.customer?.phone}
                 </p>
-                <p className="text-[#674029]">{order.customer.address}</p>
+                <p className="text-[#674029]">{order.customer?.address}</p>
               </div>
 
               <div className="space-y-1 border-t sm:border-t-0 sm:border-l border-[#E5D6BE] pt-2 sm:pt-0 sm:pl-4">
                 <span className="font-bold text-[#78350F] uppercase tracking-wider text-[10px] block">
-                  Programación en Chiriquí:
+                  Zona de Entrega (Renacimiento):
                 </span>
-                <p className="font-bold text-[#2C1810] flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-[#B45309]" /> {order.delivery.zoneName}
+                <p className="font-bold text-[#2C1810] flex items-center gap-1 text-sm">
+                  <MapPin className="w-3.5 h-3.5 text-[#B45309]" /> {order.delivery?.zoneName || order.customer?.comunidad}
                 </p>
-                <p className="flex items-center gap-1 text-[#674029]">
-                  <Calendar className="w-3 h-3 text-[#D97706]" /> {order.delivery.date}
+                <p className="text-[#674029] text-[11px]">
+                  Costo de envío: <strong>B/. {Number(deliveryCostVal).toFixed(2)}</strong>
                 </p>
-                <p className="flex items-center gap-1 text-[#674029]">
-                  <Clock className="w-3 h-3 text-[#D97706]" /> {order.delivery.timeSlot}
+                <p className="text-[#78350F] text-[11px] italic">
+                  Elaboración artesanal por encargo (24h de anticipación)
                 </p>
               </div>
             </div>
 
-            {/* Postres Encargados */}
+            {/* Resumen de Postres Encargados */}
             <div>
               <span className="font-bold text-[#78350F] uppercase tracking-wider text-[10px] block mb-2">
-                Resumen de Postres:
+                Resumen de Productos:
               </span>
               <div className="border border-[#E5D6BE] rounded-2xl overflow-hidden divide-y divide-[#E5D6BE]">
                 {order.items.map((it, idx) => (
@@ -125,43 +196,21 @@ export default function OrderSuccessModal() {
                     <div>
                       <span className="font-bold text-[#2C1810] text-sm">{it.name}</span>
                       <span className="text-[#78350F] block text-[11px]">
-                        Cantidad: {it.quantity} x B/.{it.unitPrice ? it.unitPrice.toFixed(2) : it.price.toFixed(2)}
+                        Cantidad: {it.quantity} x B/. {Number(it.unitPrice || it.price).toFixed(2)}
                       </span>
                     </div>
                     <span className="font-extrabold text-[#4A2B1B] text-sm">
-                      B/.{((it.unitPrice || it.price) * it.quantity).toFixed(2)}
+                      B/. {Number((it.unitPrice || it.price) * it.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
                 <div className="p-3 bg-[#FDF6E2] flex items-center justify-between font-bold text-sm">
-                  <span>Total con flete incluido:</span>
+                  <span>Total final del pedido:</span>
                   <span className="text-base text-[#B45309] font-extrabold">
-                    B/.{order.total.toFixed(2)}
+                    B/. {Number(order.total).toFixed(2)}
                   </span>
                 </div>
               </div>
-            </div>
-
-            {/* Guía de Pago */}
-            <div className="p-4 rounded-2xl bg-[#F0F9FF] border border-[#BAE6FD]">
-              <span className="font-bold text-[#0369A1] uppercase tracking-wider text-[10px] block mb-1">
-                Estado de Pago ({order.payment.method.toUpperCase()}):
-              </span>
-              {order.payment.method === 'yappy' && (
-                <p className="text-[#0C4A6E]">
-                  Has confirmado el pago de <strong>B/.{order.total.toFixed(2)}</strong> a <strong>@dulcesaborpanama</strong> (<strong>6167-2499</strong>).
-                </p>
-              )}
-              {order.payment.method === 'ach' && (
-                <p className="text-[#0C4A6E]">
-                  Has confirmado la transferencia ACH de <strong>B/.{order.total.toFixed(2)}</strong> a Banco General (Cta: 03-95-01-123456-7).
-                </p>
-              )}
-              {order.payment.method === 'cash' && (
-                <p className="text-[#0C4A6E]">
-                  Has confirmado el pago del <strong>anticipo del 50% (B/.{(order.total * 0.5).toFixed(2)})</strong>. El saldo restante de <strong>B/.{(order.total * 0.5).toFixed(2)}</strong> lo pagarás en efectivo al momento de la entrega.
-                </p>
-              )}
             </div>
           </div>
 
@@ -171,10 +220,10 @@ export default function OrderSuccessModal() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#16A34A] hover:bg-[#15803D] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all"
+              className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#16A34A] hover:bg-[#15803D] active:scale-98 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
             >
               <MessageSquare className="w-4 h-4" />
-              <span>Confirmar pedido por WhatsApp (6167-2499)</span>
+              <span>Enviar comprobante por WhatsApp</span>
             </a>
 
             <button

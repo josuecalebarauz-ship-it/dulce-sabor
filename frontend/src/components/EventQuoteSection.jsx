@@ -74,7 +74,7 @@ export default function EventQuoteSection({ products = [] }) {
           </h2>
 
           <p className="text-sm sm:text-base text-[#674029] max-w-2xl mx-auto">
-            ¿Tienes una boda en Boquete o Cerro Punta, un bautizo o una reunión corporativa? Preparamos mesas de postres tradicionales panameños en bandejas y porciones especiales.
+            ¿Tienes una boda o fiesta en Caisán, Río Sereno, David o alrededores de Chiriquí, un bautizo o una reunión corporativa? Preparamos mesas de postres tradicionales panameños en bandejas y porciones especiales.
           </p>
         </div>
 

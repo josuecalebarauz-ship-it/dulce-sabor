@@ -8,6 +8,9 @@ import CartDrawer from './components/CartDrawer';
 import CheckoutModal from './components/CheckoutModal';
 import OrderSuccessModal from './components/OrderSuccessModal';
 import AboutSection from './components/AboutSection';
+import DeliveryZonesSection from './components/DeliveryZonesSection';
+import PackagingSection from './components/PackagingSection';
+import MascotaBrandSection from './components/MascotaBrandSection';
 import EventQuoteSection from './components/EventQuoteSection';
 import Footer from './components/Footer';
 import { fetchProducts, FALLBACK_PRODUCTS } from './services/api';
@@ -51,6 +54,15 @@ function MainApp() {
 
         {/* Catálogo de Postres Tradicionales con Galería de Fotos */}
         <ProductCatalog products={products} />
+
+        {/* Sección Zonas de Distribución y Entrega en Renacimiento */}
+        <DeliveryZonesSection />
+
+        {/* Sección Nuestros Empaques Artesanales */}
+        <PackagingSection />
+
+        {/* Sección Mascota Oficial, Proceso Creativo y Stickers */}
+        <MascotaBrandSection />
 
         {/* Sección Nosotros: Historia, Modelo B2C y Enfoque en Chiriquí */}
         <AboutSection />

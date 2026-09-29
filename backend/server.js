@@ -271,36 +271,11 @@ app.post('/api/quotes', async (req, res) => {
 
 // Información simulada para métodos de pago panameños
 function getPaymentInstructions(method, total, customerPhone) {
-  switch (method) {
-    case 'yappy':
-      return {
-        type: 'Yappy Comercial',
-        directoryName: '@dulcesaborpanama',
-        phone: '6167-2499',
-        instructions: `Envía B/.${total.toFixed(2)} por Yappy al directorio @dulcesaborpanama o al número 6167-2499 con la referencia de tu pedido.`
-      };
-    case 'ach':
-      return {
-        type: 'Transferencia ACH Directa',
-        bank: 'Banco General de Panamá',
-        accountType: 'Cuenta Corriente',
-        accountNumber: '03-95-01-123456-7',
-        beneficiary: 'Dulce Sabor Artesanal S.A.',
-        instructions: `Transfiere B/.${total.toFixed(2)} e incluye tu número de orden en el detalle de la transferencia.`
-      };
-    case 'cash':
-    default: {
-      const advance = Number((total * 0.5).toFixed(2));
-      const balance = Number((total - advance).toFixed(2));
-      return {
-        type: 'Pago Contra Entrega (Anticipo 50% Requerido)',
-        advanceRequired: advance,
-        remainingBalance: balance,
-        advanceConfirmed: true,
-        instructions: `Para confirmar pedidos contra entrega se requiere un anticipo del 50% del total. El 50% restante se paga al recibir. Anticipo pagado vía Yappy/ACH al 6167-2499: B/.${advance.toFixed(2)}. Saldo pendiente a pagar en efectivo al recibir: B/.${balance.toFixed(2)}.`
-      };
-    }
-  }
+  return {
+    type: 'Yappy',
+    phone: '6167-2499',
+    instructions: `Paga por Yappy al 6167-2499 con el número de pedido como concepto y envía tu comprobante por WhatsApp.`
+  };
 }
 
 // Ruta de estado
@@ -308,7 +283,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     service: 'Dulce Sabor API Backend',
-    region: 'Tierras Altas, Chiriquí, Panamá',
+    region: 'Caisán, distrito de Renacimiento, provincia de Chiriquí, Panamá',
     timestamp: new Date().toISOString()
   });
 });

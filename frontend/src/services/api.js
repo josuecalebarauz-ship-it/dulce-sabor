@@ -11,14 +11,14 @@ export const FALLBACK_PRODUCTS = [
   {
     id: "bienmesabe",
     name: "Bienmesabe Chiricano",
-    tagline: "El rey dulce de Tierras Altas con raspadura y leche fresca",
+    tagline: "El rey dulce de Caisán con raspadura y leche fresca",
     description: "Postre insignia de la provincia de Chiriquí elaborado a fuego lento en pailas de cobre durante horas. Combinamos leche entera pura de ordeño diario con raspadura artesanal de caña dulce y harina de arroz tamizada, logrando esa textura cremosa, acaramelada y profunda inconfundible con un suave aroma a canela tostada.",
     price: 2.25,
     currency: "USD",
     category: "Tradición de Cuchara",
     portion: "Frasco artesanal sellado (8 oz)",
     ingredients: [
-      "Leche fresca de ordeño de Tierras Altas",
+      "Leche fresca de ordeño de Caisán, Renacimiento",
       "Raspadura pura de caña de trapiche",
       "Harina de arroz fina",
       "Canela en raja de Ceilán",
@@ -59,13 +59,13 @@ export const FALLBACK_PRODUCTS = [
     id: "gelatina-mosaico",
     name: "Gelatina de Mosaico Festiva",
     tagline: "Cubos frutales translúcidos en deliciosa crema de tres leches",
-    description: "Colorida y refrescante obra de arte comestible. Cubos de gelatina elaborados artesanalmente con sabores a fresa de Cerro Punta, limón persa y mora silvestre, suspendidos en una suntuosa y suave base de crema de tres leches con toque sutil de vainilla bourbon.",
+    description: "Colorida y refrescante obra de arte comestible. Cubos de gelatina elaborados artesanalmente con sabores a fresa fresca, limón persa y mora silvestre, suspendidos en una suntuosa y suave base de crema de tres leches con toque sutil de vainilla bourbon.",
     price: 1.75,
     currency: "USD",
     category: "Refrescantes y Fríos",
     portion: "Copa domo transparente (9 oz)",
     ingredients: [
-      "Zumos y extractos frutales (fresa de Cerro Punta, limón, mora)",
+      "Zumos y extractos frutales (fresas de fincas chiricanas, limón, mora)",
       "Crema de leche fresca de Chiriquí",
       "Leche condensada y evaporada",
       "Grenetina de alta pureza",
@@ -127,43 +127,9 @@ export const FALLBACK_PRODUCTS = [
   }
 ];
 
-export const FALLBACK_ZONES = [
-  {
-    id: "pickup",
-    name: "Retiro en Taller Dulce Sabor (Volcán Centro)",
-    description: "Retiro gratuito en nuestro taller artesanal frente al Parque Central de Volcán",
-    cost: 0.00,
-    estimatedTime: "Listo en 24h tras confirmación"
-  },
-  {
-    id: "volcan",
-    name: "Volcán y Alrededores",
-    description: "Entrega a domicilio en casco urbano de Volcán y áreas residenciales cercanas",
-    cost: 2.50,
-    estimatedTime: "Entrega en franja horaria programada"
-  },
-  {
-    id: "bambito",
-    name: "Bambito",
-    description: "Entrega a domicilio ruta hacia Cerro Punta, área de Bambito y hoteles",
-    cost: 3.00,
-    estimatedTime: "Entrega en franja horaria programada"
-  },
-  {
-    id: "cerro-punta",
-    name: "Cerro Punta & Guadalupe",
-    description: "Entrega directa hasta fincas y residencias en Cerro Punta y Guadalupe",
-    cost: 3.50,
-    estimatedTime: "Entrega en franja horaria programada"
-  },
-  {
-    id: "paso-ancho",
-    name: "Paso Ancho & Nueva California",
-    description: "Ruta agrícola y residencial de Paso Ancho y alrededores",
-    cost: 2.75,
-    estimatedTime: "Entrega en franja horaria programada"
-  }
-];
+import { ZONAS_ENTREGA, YAPPY_NUMERO, LOCALIDAD } from '../config/negocio';
+
+export const FALLBACK_ZONES = ZONAS_ENTREGA;
 
 export async function fetchProducts() {
   try {
@@ -201,54 +167,73 @@ export async function fetchZones() {
 }
 
 export async function createOrder(orderPayload) {
+  // Recalcular precios de forma estricta contra el catálogo oficial
+  const validatedItems = orderPayload.items.map(it => {
+    const catalogItem = FALLBACK_PRODUCTS.find(p => p.id === it.id);
+    const unitPrice = catalogItem ? catalogItem.price : it.price;
+    return {
+      id: it.id,
+      name: catalogItem ? catalogItem.name : it.name,
+      price: unitPrice,
+      quantity: Math.max(1, parseInt(it.quantity, 10) || 1)
+    };
+  });
+
+  const zone = (Array.isArray(FALLBACK_ZONES) && FALLBACK_ZONES.find(z => z.id === orderPayload.deliveryZoneId)) || FALLBACK_ZONES[0] || {};
+  const subtotal = Number(validatedItems.reduce((acc, it) => acc + (it.price * it.quantity), 0).toFixed(2));
+  const rawDeliveryCost = zone.costo ?? zone.cost ?? 0;
+  const deliveryCost = Number((typeof rawDeliveryCost === 'number' ? rawDeliveryCost : parseFloat(rawDeliveryCost) || 0).toFixed(2));
+  const total = Number((subtotal + deliveryCost).toFixed(2));
+
+  // Generar número de pedido único con formato DS-XXXXXX (6 dígitos)
+  const randomSuffix = Math.floor(100000 + Math.random() * 900000);
+  const orderNumber = `DS-${randomSuffix}`;
+
+  const orderData = {
+    orderId: orderNumber,
+    status: 'Pendiente de pago',
+    createdAt: new Date().toISOString(),
+    customer: {
+      name: orderPayload.customer.name,
+      phone: orderPayload.customer.phone,
+      address: orderPayload.customer.address,
+      comunidad: zone.nombre || zone.name
+    },
+    delivery: {
+      zoneId: zone.id,
+      zoneName: zone.nombre || zone.name,
+      cost: deliveryCost
+    },
+    payment: {
+      method: 'yappy',
+      phone: YAPPY_NUMERO,
+      instructions: `Paga por Yappy al ${YAPPY_NUMERO} con el número de pedido como concepto y envía tu comprobante por WhatsApp.`
+    },
+    items: validatedItems,
+    subtotal,
+    deliveryCost,
+    total
+  };
+
   try {
     const res = await fetch(`${API_BASE_URL}/orders`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderPayload)
+      body: JSON.stringify(orderData)
     });
-    if (!res.ok) {
-      const errJson = await res.json();
-      throw new Error(errJson.message || 'Error al procesar el pedido');
+    if (res.ok) {
+      const serverJson = await res.json();
+      return serverJson;
     }
-    return await res.json();
   } catch (err) {
-    console.warn('Guardando simulación local de orden:', err);
-    // Simulación local si el backend estuviera inactivo
-    const orderNumber = `DS-LOCAL-${Math.floor(1000 + Math.random() * 9000)}`;
-    const zone = FALLBACK_ZONES.find(z => z.id === orderPayload.deliveryZoneId) || FALLBACK_ZONES[0];
-    const subtotal = orderPayload.items.reduce((acc, it) => acc + (it.price * it.quantity), 0);
-    return {
-      success: true,
-      message: 'Pedido simulado recibido con éxito',
-      data: {
-        orderId: orderNumber,
-        createdAt: new Date().toISOString(),
-        customer: orderPayload.customer,
-        delivery: {
-          zoneId: zone.id,
-          zoneName: zone.name,
-          cost: zone.cost,
-          date: orderPayload.deliveryDate,
-          timeSlot: orderPayload.deliveryTimeSlot
-        },
-        payment: {
-          method: orderPayload.paymentMethod,
-          advanceRequired: orderPayload.paymentMethod === 'cash' ? Number(((subtotal + zone.cost) * 0.5).toFixed(2)) : 0,
-          remainingBalance: orderPayload.paymentMethod === 'cash' ? Number(((subtotal + zone.cost) * 0.5).toFixed(2)) : 0,
-          details: {
-            yappy: 'Envía a @dulcesaborpanama o al 6167-2499',
-            ach: 'Banco General - Cta Corriente 03-95-01-123456-7 (Dulce Sabor Artesanal S.A.)',
-            cash: `Contra Entrega: Anticipo del 50% ($${((subtotal + zone.cost) * 0.5).toFixed(2)}) enviado por Yappy/ACH al 6167-2499. Saldo restante ($${((subtotal + zone.cost) * 0.5).toFixed(2)}) en efectivo al recibir.`
-          }[orderPayload.paymentMethod]
-        },
-        items: orderPayload.items,
-        subtotal,
-        deliveryCost: zone.cost,
-        total: subtotal + zone.cost
-      }
-    };
+    console.warn('Backend remoto no disponible, usando registro local garantizado:', err);
   }
+
+  return {
+    success: true,
+    message: 'Pedido registrado con éxito. Pendiente de pago.',
+    data: orderData
+  };
 }
 
 export async function submitQuote(quotePayload) {

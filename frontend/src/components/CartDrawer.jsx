@@ -70,9 +70,12 @@ export default function CartDrawer() {
               <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
                 {cartItems.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                    <div className="w-20 h-20 rounded-full bg-[#FBF6EC] border border-[#E5D6BE] flex items-center justify-center text-3xl mb-4">
-                      🍮
-                    </div>
+                    <img
+                      src="/images/brand/personaje-variantes.webp"
+                      alt="Mascota oficial de Dulce Sabor esperando tu selección de postres"
+                      loading="lazy"
+                      className="w-28 h-28 object-contain mx-auto mb-3 drop-shadow-sm"
+                    />
                     <h4 className="font-brand-title text-xl font-bold text-[#2C1810] mb-2">
                       Tu carrito está vacío
                     </h4>
@@ -115,9 +118,9 @@ export default function CartDrawer() {
                         </span>
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-extrabold text-[#B45309]">
-                            B/. {(item.price * item.quantity).toFixed(2)}
+                            B/. {(Number(item.price || 0) * (item.quantity || 1)).toFixed(2)}
                             <span className="text-[10px] text-[#674029] font-normal ml-1">
-                              (B/. {item.price.toFixed(2)} c/u)
+                              (B/. {Number(item.price || 0).toFixed(2)} c/u)
                             </span>
                           </span>
 
@@ -163,16 +166,16 @@ export default function CartDrawer() {
                   <div className="space-y-2 mb-4 text-sm">
                     <div className="flex justify-between text-[#674029]">
                       <span>Subtotal de postres:</span>
-                      <span className="font-bold text-[#2C1810]">B/. {cartSubtotal.toFixed(2)}</span>
+                      <span className="font-bold text-[#2C1810]">B/. {Number(cartSubtotal || 0).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-[#78350F] text-xs">
-                      <span>Flete estimado (Tierras Altas):</span>
+                      <span>Flete estimado (Caisán y alrededores):</span>
                       <span className="italic">Se calcula en checkout</span>
                     </div>
                     <div className="border-t border-[#E5D6BE] pt-2 flex justify-between items-baseline">
                       <span className="font-bold text-base text-[#2C1810]">Total estimado:</span>
                       <span className="text-2xl font-extrabold text-[#78350F]">
-                        B/. {cartSubtotal.toFixed(2)}
+                        B/. {Number(cartSubtotal || 0).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -187,7 +190,7 @@ export default function CartDrawer() {
 
                   <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-[#78350F]">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#16A34A]" />
-                    <span>Pago seguro simulado (Yappy, ACH, Contra Entrega)</span>
+                    <span>Pago directo y seguro por Yappy (6167-2499)</span>
                   </div>
                 </div>
               )}

@@ -220,7 +220,7 @@ export default function ProductDetailModal() {
                   <div>
                     <span className="text-xs text-[#78350F] block font-medium">Precio Unitario</span>
                     <span className="text-2xl font-extrabold text-[#2C1810]">
-                      B/. {product.price.toFixed(2)}
+                      B/. {Number(product?.price ?? 0).toFixed(2)}
                     </span>
                   </div>
 
@@ -264,7 +264,7 @@ export default function ProductDetailModal() {
                     <>
                       <ShoppingBag className="w-4 h-4" />
                       <span>
-                        Agregar {quantity} al Carrito • B/. {(product.price * quantity).toFixed(2)}
+                        Agregar {quantity} al Carrito • B/. {(Number(product?.price ?? 0) * quantity).toFixed(2)}
                       </span>
                     </>
                   )}

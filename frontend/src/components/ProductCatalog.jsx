@@ -32,7 +32,7 @@ export default function ProductCatalog({ products = [] }) {
           </h2>
 
           <p className="text-[#674029] text-base sm:text-lg leading-relaxed">
-            Cada postre es preparado a mano al momento de tu orden, garantizando la máxima frescura de la leche y los frutos de Tierras Altas. Descubre cada receta con fotografía cinemática y galería de imágenes reales.
+            Cada postre es preparado a mano al momento de tu orden, garantizando la máxima frescura de la leche y los frutos de Caisán y Renacimiento. Descubre cada receta con fotografía cinemática y galería de imágenes reales.
           </p>
         </div>
 
@@ -56,15 +56,45 @@ export default function ProductCatalog({ products = [] }) {
           })}
         </div>
 
-        {/* Cuadrícula de Postres con Modelos 3D */}
+        {/* Cuadrícula de Postres con Modelos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
+        {/* Tarjeta de Apoyo de Empaque Artesanal */}
+        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-white border border-[#E5D6BE] shadow-sm flex flex-col md:flex-row items-center gap-6">
+          <div className="w-full md:w-1/3 shrink-0">
+            <img
+              src="/images/brand/empaque.webp"
+              alt="Empaques artesanales oficiales Dulce Sabor"
+              loading="lazy"
+              className="w-full h-48 object-cover rounded-2xl border border-[#E5D6BE] shadow-xs"
+            />
+          </div>
+          <div className="flex-1">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#B45309] block mb-1">
+              Presentación & Cuidado
+            </span>
+            <h3 className="font-brand-title text-xl font-bold text-[#2C1810] mb-2">
+              Empaques diseñados para conservar la textura y el sabor
+            </h3>
+            <p className="text-xs sm:text-sm text-[#674029] leading-relaxed mb-3">
+              Cada entrega se empaca de manera higiénica y biodegradable en envases sellados que protegen los postres en rutas rurales entre Caisán y las comunidades de Renacimiento, manteniéndolos tan frescos como recién sacados de la paila.
+            </p>
+            <a
+              href="#empaques"
+              className="text-xs font-bold text-[#B45309] hover:text-[#78350F] inline-flex items-center gap-1 transition-colors"
+            >
+              <span>Conoce más sobre nuestros empaques</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
         {/* Banner informativo de pedidos por encargo */}
-        <div className="mt-16 p-6 rounded-3xl bg-gradient-to-r from-[#FFFDF9] via-[#FDF6E2] to-[#FFFDF9] border border-[#F4BE54]/60 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-8 p-6 rounded-3xl bg-gradient-to-r from-[#FFFDF9] via-[#FDF6E2] to-[#FFFDF9] border border-[#F4BE54]/60 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-[#4A2B1B] text-[#F59E0B] flex items-center justify-center shrink-0 shadow-md">
               <Sparkles className="w-6 h-6" />

@@ -1,37 +1,51 @@
 [
   {
-    "id": "pickup",
-    "name": "Retiro en Taller Dulce Sabor (Volcán Centro)",
-    "description": "Retiro gratuito en nuestro taller artesanal frente al Parque Central de Volcán",
-    "cost": 0.00,
-    "estimatedTime": "Listo en 24h tras confirmación del pedido"
+    "id": "caisan-centro",
+    "name": "Plaza de Caisán",
+    "description": "Punto central en Plaza de Caisán y alrededores inmediatos",
+    "cost": 1.50,
+    "estimatedTime": "Entrega por pedido (24h de anticipación)"
   },
   {
-    "id": "volcan",
-    "name": "Volcán y Alrededores",
-    "description": "Entrega a domicilio en casco urbano de Volcán y áreas residenciales cercanas",
-    "cost": 2.50,
-    "estimatedTime": "Entrega en franja horaria programada (mañana o tarde)"
-  },
-  {
-    "id": "bambito",
-    "name": "Bambito",
-    "description": "Entrega a domicilio ruta hacia Cerro Punta, área de Bambito y hoteles",
-    "cost": 3.00,
-    "estimatedTime": "Entrega en franja horaria programada"
-  },
-  {
-    "id": "cerro-punta",
-    "name": "Cerro Punta & Guadalupe",
-    "description": "Entrega directa hasta fincas y residencias en Cerro Punta y Guadalupe",
+    "id": "rio-sereno",
+    "name": "Río Sereno",
+    "description": "Cabecera de Renacimiento y zonas comerciales",
     "cost": 3.50,
-    "estimatedTime": "Entrega en franja horaria programada"
+    "estimatedTime": "Entrega por pedido (24h de anticipación)"
   },
   {
-    "id": "paso-ancho",
-    "name": "Paso Ancho & Nueva California",
-    "description": "Ruta agrícola y residencial de Paso Ancho y alrededores",
+    "id": "santa-marta",
+    "name": "Santa Marta",
+    "description": "Comunidad agrícola vecina de Caisán",
+    "cost": 2.50,
+    "estimatedTime": "Entrega por pedido (24h de anticipación)"
+  },
+  {
+    "id": "canas-gordas",
+    "name": "Cañas Gordas",
+    "description": "Ruta fronteriza y comunidades aledañas",
+    "cost": 3.50,
+    "estimatedTime": "Entrega por pedido (24h de anticipación)"
+  },
+  {
+    "id": "monte-lirio",
+    "name": "Monte Lirio",
+    "description": "Sector de Monte Lirio y fincas cafetaleras",
+    "cost": 3.00,
+    "estimatedTime": "Entrega por pedido (24h de anticipación)"
+  },
+  {
+    "id": "brenon",
+    "name": "Breñón",
+    "description": "Área rural y residencial de Breñón",
     "cost": 2.75,
-    "estimatedTime": "Entrega en franja horaria programada"
+    "estimatedTime": "Entrega por pedido (24h de anticipación)"
+  },
+  {
+    "id": "san-andres",
+    "name": "San Andrés",
+    "description": "Comunidad vecina y ruta de conexión",
+    "cost": 3.00,
+    "estimatedTime": "Entrega por pedido (24h de anticipación)"
   }
 ]
