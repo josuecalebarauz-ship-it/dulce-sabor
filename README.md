@@ -77,11 +77,11 @@ dulce-sabor/
 
 ## 🍮 Catálogo de Postres Tradicionales
 
-1. **Bienmesabe Chiricano (B/. 2.25):** Postre insignia de Caisán cocinado a fuego lento con leche fresca de ordeño, raspadura de trapiche y canela en rama.
-2. **Arroz con Leche Cremoso (B/. 1.88):** Arroz especial con leche entera, leche condensada casera, lluvia de canela fina y toque de limón criollo.
-3. **Gelatina de Mosaico Festiva (B/. 1.75):** Cubos translúcidos de fresa, limón y mora suspendidos en suave crema de tres leches.
-4. **Dulce de Banana Casero (B/. 2.00):** Bizcocho húmedo horneado con guineos maduros del valle, nueces tostadas y baño de caramelo tibio.
-5. **Bollos de Maíz Nuevo Dulces (B/. 2.50):** Bollos tradicionales campesinos elaborados con maíz tierno molido en piedra, raspadura y envueltos en hojas tiernas de maíz.
+1. **Bienmesabe Chiricano (B/. 1.25):** Postre insignia de Caisán cocinado a fuego lento con leche fresca de ordeño, raspadura de trapiche y canela en rama.
+2. **Arroz con Leche Cremoso (B/. 1.25):** Arroz especial con leche entera, leche condensada casera, lluvia de canela fina y toque de limón criollo.
+3. **Gelatina de Mosaico Festiva (B/. 1.00):** Cubos translúcidos de fresa, limón y mora suspendidos en suave crema de tres leches.
+4. **Dulce de Banana Casero (B/. 1.25):** Bizcocho húmedo horneado con guineos maduros del valle, nueces tostadas y baño de caramelo tibio.
+5. **Bollos de Maíz Nuevo Dulces (B/. 2.00):** Bollos tradicionales campesinos elaborados con maíz tierno molido en piedra, raspadura y envueltos en hojas tiernas de maíz.
 
 ---
 

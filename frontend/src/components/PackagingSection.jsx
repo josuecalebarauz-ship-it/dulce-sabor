@@ -88,7 +88,7 @@ export default function PackagingSection() {
                     Listos para Regalar y Compartir
                   </h4>
                   <p className="text-xs text-[#674029] mt-0.5">
-                    Etiquetado artesanal con detalles de ingredientes y porciones individuales o familiares ideales para mesas de postres y detalles dulces.
+                    Etiquetado artesanal con detalles de ingredientes y porciones de consumo individual ideales para mesas de postres y detalles dulces.
                   </p>
                 </div>
               </div>
